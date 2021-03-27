@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meiken.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.meiken.pojo.Student" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Sname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Sage" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="Ssex" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, SId, Sname, Sage, Ssex
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Student
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meiken.pojo.Student" >
+    insert into Student (id, SId, Sname, 
+      Sage, Ssex)
+    values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{sage,jdbcType=TIMESTAMP}, #{ssex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meiken.pojo.Student" >
+    insert into Student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sid != null" >
+        SId,
+      </if>
+      <if test="sname != null" >
+        Sname,
+      </if>
+      <if test="sage != null" >
+        Sage,
+      </if>
+      <if test="ssex != null" >
+        Ssex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="sage != null" >
+        #{sage,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ssex != null" >
+        #{ssex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meiken.pojo.Student" >
+    update Student
+    <set >
+      <if test="sid != null" >
+        SId = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        Sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="sage != null" >
+        Sage = #{sage,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ssex != null" >
+        Ssex = #{ssex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meiken.pojo.Student" >
+    update Student
+    set SId = #{sid,jdbcType=VARCHAR},
+      Sname = #{sname,jdbcType=VARCHAR},
+      Sage = #{sage,jdbcType=TIMESTAMP},
+      Ssex = #{ssex,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Student
+    where id is not null
+  </select>
+</mapper>

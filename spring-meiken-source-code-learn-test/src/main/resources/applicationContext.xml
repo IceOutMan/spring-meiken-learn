@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:myname="http://www.meiken.com/schema/user"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.meiken.com/schema/user          http://www.meiken.com/schema/user.xsd">
+
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="beanTest" class="com.meiken.BeanTest">
+        <property name="name" value="张三"/>
+    </bean>
+
+    <myname:user id="userTest" username="aaa" email="bbb"/>
+
+    <bean id="aspectJTest" class="com.meiken.aop.AspectJTest"/>
+
+</beans>
