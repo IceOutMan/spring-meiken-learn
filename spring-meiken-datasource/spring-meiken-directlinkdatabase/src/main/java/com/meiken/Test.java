@@ -16,10 +16,11 @@ public class Test {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/developer_use?characterEncoding=utf-8", "glf", "glf");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/developer_use?characterEncoding=utf-8", "root", "root");
 
             String querySql = "select id,tid,tname from Teacher";
 
+            //statement -> 用于执行静态SQL语句 -> 返回结果对象
             statement = connection.createStatement();
 
             resultSet = statement.executeQuery(querySql);

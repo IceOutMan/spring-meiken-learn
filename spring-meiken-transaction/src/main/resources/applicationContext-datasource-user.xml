@@ -14,9 +14,9 @@
         </property>
     </bean>
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="userDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${db.driverClassName}"/>
-        <property name="url" value="${db.url}"/>
+        <property name="url" value="${db.url2}"/>
         <property name="username" value="${db.username}"/>
         <property name="password" value="${db.password}"/>
         <!-- 连接池启动时的初始值 -->
@@ -38,7 +38,6 @@
         <!--<property name="removeAbandonedTimeout" value="120" />-->
         <!-- #连接的超时时间，默认为半小时。 -->
         <property name="minEvictableIdleTimeMillis" value="${db.minEvictableIdleTimeMillis}"/>
-
         <!--# 失效检查线程运行时间间隔，要小于MySQL默认-->
         <property name="timeBetweenEvictionRunsMillis" value="40000"/>
         <!--# 检查连接是否有效-->
@@ -47,37 +46,18 @@
         <property name="validationQuery" value="SELECT 1 FROM dual"/>
     </bean>
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"></property>
-
-        <!--分页插件-->
-        <property name="plugins">
-            <array>
-                <bean class="com.github.pagehelper.PageHelper">
-                    <property name="properties">
-                        <value>
-                            dialect=mysql
-                        </value>
-                    </property>
-                </bean>
-            </array>
-        </property>
-    </bean>
-
-    <!-- dao层mapper需要构造成Bean被使用 ，不然还需要通过sqlSessionFactory.getMapper(UserMapper.class)的方式获取 -->
-    <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.meiken.dao"/>
+    <bean id="userJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="userDataSource"></property>
     </bean>
 
     <!-- 事务管理 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="userTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="userDataSource"/>
         <property name="rollbackOnCommitFailure" value="true"/>
     </bean>
 
     <!--使用@Transactional进行声明式事务管理需要声明下面这行 -->
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+    <tx:annotation-driven transaction-manager="userTransactionManager" proxy-target-class="true" />
 
 
 </beans>

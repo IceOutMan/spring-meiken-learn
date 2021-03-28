@@ -7,8 +7,7 @@
     <!-- 自动扫描 会自动注入Bean类-->
     <context:component-scan base-package="com.meiken" />
 
-    <import resource="applicationContext-datasource.xml"/>
-
-    <bean id="userServiceImpl" class="com.meiken.service.impl.UserServiceImpl"/>
+    <import resource="applicationContext-datasource-user.xml"/>
+    <import resource="applicationContext-datasource-goods.xml"/>
 
 </beans>
