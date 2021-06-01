@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+<!--    <rabbit:connection-factory id="mayConnectionFactory" host="localhost"-->
+<!--                               port="5672"-->
+<!--                               username="admin"-->
+<!--                               password="admin"/>-->
+
+<!--    <rabbit:admin connection-factory="mayConnectionFactory"/>-->
+
+<!--    &lt;!&ndash;发送rabbitmq消息配置&ndash;&gt;-->
+<!--    <rabbit:template id="amqpTemplate" connection-factory="mayConnectionFactory"/>-->
+
+<!--    <rabbit:queue name="XMLY_MEIKEN_TEST" auto-declare="true"></rabbit:queue>-->
+
+<!--    &lt;!&ndash; 开启rabbitMQ注解 &ndash;&gt;-->
+<!--    <rabbit:annotation-driven/>-->
+
+<!--    &lt;!&ndash; 消息监听 &ndash;&gt;-->
+<!--    <bean id="rabbitListenerContainerFactory"-->
+<!--          class="org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory">-->
+<!--        <property name="connectionFactory" ref="mayConnectionFactory"/>-->
+<!--        <property name="concurrentConsumers" value="5"/>-->
+<!--    </bean>-->
+
+</beans>
