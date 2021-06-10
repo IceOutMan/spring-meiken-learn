@@ -16,6 +16,11 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
 
+        <!-- plugin 可以定制要生成的模版 -->
+        <!-- <plugin type="xxx">-->
+        <!--    <property name="xx" value="xx"/>-->
+        <!-- </plugin>-->
+
         <!-- optional，旨在创建class时，对注释进行控制 -->
         <commentGenerator>
             <property name="suppressDate" value="true"/>
