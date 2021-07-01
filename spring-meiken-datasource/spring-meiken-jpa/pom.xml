@@ -90,13 +90,6 @@
       <version>1.4</version>
     </dependency>
 
-    <!--hibernate-->
-<!--    <dependency>-->
-<!--      <groupId>org.hibernate</groupId>-->
-<!--      <artifactId>hibernate-core</artifactId>-->
-<!--      <version>5.4.20.Final</version>-->
-<!--    </dependency>-->
-
 
     <!-- querydsl-->
     <dependency>

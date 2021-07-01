@@ -7,6 +7,6 @@
     <!-- 自动扫描 会自动注入Bean类-->
     <context:component-scan base-package="com.meiken" />
 
-    <import resource="applicationContext-datasource.xml"/>
+    <import resource="jpa-datasource.xml"/>
 
 </beans>
