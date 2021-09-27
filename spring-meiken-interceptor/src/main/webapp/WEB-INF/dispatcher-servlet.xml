@@ -22,10 +22,28 @@
 
     </mvc:annotation-driven>
 
+    <mvc:interceptors>
+
+
+        <!-- 权限拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <bean class="com.meiken.interceptors.AuthIntercepter"/>
+        </mvc:interceptor>
+
+        <!-- 日志拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <bean class="com.meiken.interceptors.LogIntercepter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- 文件上传 -->
-<!--    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-<!--        <property name="maxUploadSize" value="10485760"/> &lt;!&ndash; 10M &ndash;&gt;-->
-<!--        <property name="maxInMemorySize" value="4096" />-->
-<!--        <property name="defaultEncoding" value="UTF-8"></property>-->
-<!--    </bean>-->
+    <!--    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+    <!--        <property name="maxUploadSize" value="10485760"/> &lt;!&ndash; 10M &ndash;&gt;-->
+    <!--        <property name="maxInMemorySize" value="4096" />-->
+    <!--        <property name="defaultEncoding" value="UTF-8"></property>-->
+    <!--    </bean>-->
 </beans>
