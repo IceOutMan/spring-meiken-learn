@@ -13,7 +13,6 @@
     <context:component-scan base-package="com.meiken" annotation-config="true"/>
 
     <aop:aspectj-autoproxy/>
-    <bean class="com.meiken.config.AspectXmlBean"/>
 
     <!--处理 @ResponseBody 注解 返回json-->
     <mvc:annotation-driven>
