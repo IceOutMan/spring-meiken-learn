@@ -2,11 +2,16 @@ package com.meiken.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rabbitmq.client.*;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.applet.AppletContext;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
@@ -19,10 +24,13 @@ import java.util.concurrent.TimeoutException;
 @RestController
 public class TestController {
 
-//    @Autowired
-//    private AmqpTemplate amqpTemplate;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
-    private final static String QUEUE_NAME = "XMLY_MEIKEN_TEST";
+    private final static String QUEUE_NAME = "XMLY_MEIKEN_QUEUE";
+
+    @Autowired
+    private ApplicationContext  applicationContext;
 
     @RequestMapping(value = "/test.do",method = RequestMethod.GET)
     @ResponseBody
@@ -31,16 +39,21 @@ public class TestController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("test", null);
 
-        return jsonObject;
+        Object bean = applicationContext.getBean(PropertyPlaceholderConfigurer.class);
+
+        return bean;
     }
 
     @RequestMapping(value = "/push.do",method = RequestMethod.GET)
     @ResponseBody
     public void mq(){
-
+//        nativePush();
+        amqpTemplate.convertAndSend("XMLY_MEIKEN_EXCHANGE","XMLY_MEIKEN_KEY","HELLO");
+    }
+    private void nativePush(){
         ConnectionFactory factory = new ConnectionFactory();
 
-        factory.setHost("localhost");
+        factory.setHost("47.98.193.213");
         factory.setPort(5672);
         factory.setUsername("admin");
         factory.setPassword("admin");
@@ -68,8 +81,12 @@ public class TestController {
     @RequestMapping(value = "/pull.do",method = RequestMethod.GET)
     @ResponseBody
     public void get(){
+//        nativePull();
+    }
+
+    private void nativePull(){
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("47.98.193.213");
         factory.setPort(5672);
         factory.setUsername("admin");
         factory.setPassword("admin");

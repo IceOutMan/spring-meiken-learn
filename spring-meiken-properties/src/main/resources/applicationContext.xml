@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+    <!-- 自动扫描 会自动注入Bean类-->
+    <context:component-scan base-package="com.meiken" />
+
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:meiken.properties</value>
+                <value>classpath:meiken.2.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="propertiesXmlConfig" class="com.meiken.config.PropertiesXmlConfig">
+        <property name="name" value="${spring.meiken.xml.name}"></property>
+    </bean>
+
+    <!--    另外一种引入属性文件的方式-->
+    <util:properties id="otherXMLPropertiesConfig" location ="classpath:meiken.other.properties"/>
+    <bean id="otherPropertiesXmlConfig" class="com.meiken.config.PropertiesXmlConfig">
+        <property name="name" value="#{otherXMLPropertiesConfig['other.name']}"></property>
+    </bean>
+
+
+</beans>
