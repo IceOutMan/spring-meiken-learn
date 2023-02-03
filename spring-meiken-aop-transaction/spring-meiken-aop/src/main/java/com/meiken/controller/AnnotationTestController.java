@@ -1,7 +1,6 @@
 package com.meiken.controller;
 
 import com.meiken.service.AnnotationService;
-import com.meiken.service.InterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

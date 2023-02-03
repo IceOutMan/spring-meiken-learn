@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 
-@PropertySource( value = { "classpath:rabbitConfig.properties" })
+@PropertySource( value = {"classpath:rabbitConfig.properties"})
 @Configuration
 @EnableRabbit
 public class RabbitBeanConfiguration {

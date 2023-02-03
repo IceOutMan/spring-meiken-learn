@@ -4,7 +4,6 @@ import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.loader.ServletLoader;
 import com.mitchellbosecke.pebble.template.PebbleTemplate;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import java.io.IOException;
 import java.io.Writer;
